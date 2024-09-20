@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Assets/css/style.css">
+    <script src="js/script.js" defer></script> <!--trabalhar com dom pra fazer o html carregar primeiro e depois o js, evitar problemas com ordem de carregamento-->
+    <title>ViaCEP</title>
+</head>
+<body>
+    <form>
+    <fieldset>
+        <legend>Coloque seu CEP</legend>
+        <input type="text" name = "cep" placeholder="CEP">
+        <input type="button" value="Buscar">
+    </fieldset>
+        </br></br>
+        <input type="text" name = "localidade" placeholder="Localidade"></br>
+        <input type="text" name = "logradouro" placeholder="Logradouro"></br>
+        <input type="text" name = "uf" placeholder="UF">
+
+      <script>  
+      let cep = document.querySelector("#cep")
+let localidade = document.querySelector("#localidade")
+let logradouro = document.querySelector("#logradouro")
+let uf = document.querySelector("#uf")
+
+fetch("https://viacep.com.br/ws/01001000/json/")
+.then(Response => Response.json())
+.then(data => {
+    console.log(data);
+    cep.innerHTML += data.cep
+    localidade.innerHTML += data.localidade
+    logradouro.innerHTML += data.logradouro
+    uf.innerHTML += data.uf
+})
+</script>
+</form>
+</body>
+</html>
